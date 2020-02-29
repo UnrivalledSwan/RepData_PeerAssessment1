@@ -216,9 +216,12 @@ dayType_avg_activity <- with(activity, aggregate(x = steps, by = list(interval,d
 names(dayType_avg_activity) <- c("interval","dayType","average_steps")
 
 # plot the time series for weekdays and weekends
-library(ggplot2)
-plt <- ggplot(dayType_avg_activity,aes(interval,average_steps))
-plt+geom_line(color="blue")+ggtitle("Average steps per 5-minute Interval: Weekdays vs. Weekends")+xlab("interval")+ylab("Average Steps")+facet_grid(dayType ~ .)
+library(lattice) 
+xyplot(average_steps~interval|dayType,
+		data=dayType_avg_activity, type="l",  
+		layout = c(1,2),
+		main="Average steps per 5-minute Interval: Weekdays vs. Weekends", 
+		ylab="Average Steps", xlab="Interval")
 ```
 
 ![](PA1_template_files/figure-html/dtAverageActivity-1.png)<!-- -->
