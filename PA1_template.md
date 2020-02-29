@@ -47,22 +47,37 @@ hist(total_steps$total_steps,
 
 ![](PA1_template_files/figure-html/hists-1.png)<!-- -->
 
+```r
+png("./figures/plot1.png", width=1000, height=600)
+hist(total_steps$total_steps,
+     breaks=8, 
+     main="Histogram of Total Steps per Day",
+     xlab = "Total Steps", 
+     col="darkmagenta")
+dev.off()
+```
+
+```
+## png 
+##   2
+```
+
 ### Calculate and report the mean and median of the total number of steps taken per day
 
 ```r
-paste("The mean is ", round(mean(total_steps$total_steps),2))
+paste("The mean is", round(mean(total_steps$total_steps),2), sep=" ")
 ```
 
 ```
-## [1] "The mean is  9354.23"
+## [1] "The mean is 9354.23"
 ```
 
 ```r
-paste("The median is ", round(median(total_steps$total_steps),2))
+paste("The median is", round(median(total_steps$total_steps),2), sep=" ")
 ```
 
 ```
-## [1] "The median is  10395"
+## [1] "The median is 10395"
 ```
 
 ## What is the average daily activity pattern?
@@ -80,6 +95,17 @@ plot(average_activity$interval, average_activity$average_steps, type = "l", xlab
 ```
 
 ![](PA1_template_files/figure-html/stepsPlot-1.png)<!-- -->
+
+```r
+png("./figures/plot2.png", width=1000, height=600)
+plot(average_activity$interval, average_activity$average_steps, type = "l", xlab="interval", ylab="Average number of steps", main="Average number of steps per interval")
+dev.off()
+```
+
+```
+## png 
+##   2
+```
 
 ### Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
 Load the sqldf library to complete this step
@@ -149,22 +175,37 @@ hist(new_total_steps$total_steps,
 
 ![](PA1_template_files/figure-html/newhist-1.png)<!-- -->
 
+```r
+png("./figures/plot3.png", width=1000, height=600)
+hist(new_total_steps$total_steps,
+     breaks=8, 
+     main="Histogram of Total Steps per Day (with Imputed Data)",
+     xlab = "Total Steps", 
+     col="yellow")
+dev.off()
+```
+
+```
+## png 
+##   2
+```
+
 ### Calculate and report the mean and median total number of steps taken per day
 
 ```r
-paste("The New mean is ", round(mean(new_total_steps$total_steps),2))
+paste("The New mean is", round(mean(new_total_steps$total_steps),2), sep=" ")
 ```
 
 ```
-## [1] "The New mean is  10765.64"
+## [1] "The New mean is 10765.64"
 ```
 
 ```r
-paste("The New median is ", round(median(new_total_steps$total_steps),2))
+paste("The New median is", round(median(new_total_steps$total_steps),2), sep=" ")
 ```
 
 ```
-## [1] "The New median is  10762"
+## [1] "The New median is 10762"
 ```
 
 ```r
@@ -174,19 +215,19 @@ newMedTotalSteps <- round(median(new_total_steps$total_steps),2)
 oldMeanTotalSteps <- round(mean(total_steps$total_steps),2)
 oldMedTotalSteps <- round(median(total_steps$total_steps),2)
 
-paste("The Old mean is ", round(mean(total_steps$total_steps),2))
+paste("The Old mean is", round(mean(total_steps$total_steps),2), sep=" ")
 ```
 
 ```
-## [1] "The Old mean is  9354.23"
+## [1] "The Old mean is 9354.23"
 ```
 
 ```r
-paste("The Old median is ", round(median(total_steps$total_steps),2))
+paste("The Old median is", round(median(total_steps$total_steps),2), sep=" ")
 ```
 
 ```
-## [1] "The Old median is  10395"
+## [1] "The Old median is 10395"
 ```
 
 ### Do the values differ from the estimates from the first part of the assignment?
@@ -225,3 +266,19 @@ xyplot(average_steps~interval|dayType,
 ```
 
 ![](PA1_template_files/figure-html/dtAverageActivity-1.png)<!-- -->
+
+```r
+png("./figures/plot4.png", width=1000, height=600)
+xyplot(average_steps~interval|dayType,
+		data=dayType_avg_activity, type="l",  
+		layout = c(1,2),
+		main="Average steps per 5-minute Interval: Weekdays vs. Weekends", 
+		ylab="Average Steps", xlab="Interval")
+
+dev.off()
+```
+
+```
+## png 
+##   2
+```
